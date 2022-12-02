@@ -277,6 +277,14 @@ p2 {
   color: #fcfcfc;
   text-decoration: none;
 }
+/* Tooltip container */
+.tooltip {
+  position: fixed;
+  display: inline-block;
+  y-overflow: auto;
+  /* If you want dots under the hoverable text */
+}
+
 /* Tooltip text 
 .tooltip .tooltiptext {
   visibility: hidden;

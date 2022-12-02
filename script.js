@@ -248,48 +248,84 @@ map.on("mouseenter", ["bsl4", "bsl3plus", "absl4", "rbsl4"], (event) => {
 
 //SCORECARDS
 //popup on hover
+const govDisplay = document.getElementById('gov');
+const staDisplay = document.getElementById('sta');
+const safDisplay = document.getElementById('saf');
+const secDisplay = document.getElementById('sec');
+const duaDisplay = document.getElementById('dua');
 
-//map.on(
-//  "mousemove",
-//  ["Governance", "Stability", "Biosafety", "Biosecurity", "DualUse"],
-//  (event) => {
-//change mouse pointer
-//    map.getCanvas().style.cursor = "pointer";
-//    const features = map.queryRenderedFeatures(event.point, {
-//      layers: ["Governance", "Stability", "Biosafety", "Biosecurity", "DualUse"]
-//    });
-//    if (!features.length) {
-//      return;
-//    }
-//    const feature = features[0];
-//
-//    const popup = new mapboxgl.Popup({
-//      closeButton: false,
-//      closeOnClick: true,
-//      offset: [0, 0]
-//    })
-//      .setHTML(
-//        `<h3>${feature.properties.Country}</h3>
-//      <p>Governance: ${feature.properties.Governance}</p>
-//      <p>Stability: ${feature.properties.Stability}</p>
-//      <p>Biosafety: ${feature.properties.Biosafety}</p>
-//      <p>Biosecurity: ${feature.properties.Biosecurity}</p>
-//      <p>Dual Use: ${feature.properties.DualUse}</p>`
-//      )
-//      .addTo(map)
-//      .trackPointer();
-//close popup on mouse leave
 
-//    map.on(
-//      "mouseleave",
-//      ["Governance", "Stability", "Biosafety", "Biosecurity", "DualUse"],
-//      (event) => {
-//        map.getCanvas().style.cursor = "";
-//        popup.remove().trackPointer();
-//      }
-//    );
-//  }
-// );
+let CountryID = null; 
+
+map.on(
+  "mousemove", ["Governance", "Stability","Biosafety","Biosecurity","DualUse"],  (event) => {
+    //change mouse pointer
+    map.getCanvas().style.cursor = "pointer";
+    
+    // Set constants equal to the current feature's governance score
+    
+    const govScore = event.features[0].properties.Governance;
+    const staScore = event.features[0].properties.Stability;
+    const safScore = event.features[0].properties.Biosafety;
+    const secScore = event.features[0].properties.Biosecurity;
+    const duaScore = event.features[0].properties.DualUse;
+
+    // Check whether features exist
+  
+    if (event.features.length === 0) return;
+    
+    // Display the governance in the sidebar
+   govDisplay.textContent = govScore;
+   staDisplay.textContent = staScore;
+   safDisplay.textContent = safScore;
+   secDisplay.textContent = secScore;
+   duaDisplay.textContent = duaScore;
+
+
+ if (CountryID) {
+    map.removeFeatureState({
+      id: CountryID
+    });
+  }
+
+  CountryID = event.features[0].Country;
+
+  // When the mouse moves over the earthquakes-viz layer, update the
+  // feature state for the feature under the mouse
+  map.setFeatureState(
+    {
+      id: CountryID
+    },
+    {
+      hover: true
+    }
+  );
+});
+
+map.on('mouseleave', ['Governance','Stability','Biosafety','Biosecurity','DualUse'], () => {
+  if (CountryID) {
+    map.setFeatureState(
+      {
+        id: CountryID
+      },
+      {
+        hover: false
+      }
+    );
+  }
+
+ CountryID = null;
+  // Remove the information from the previously hovered feature from the sidebar
+  govDisplay.textContent = '';
+  staDisplay.textContent = '';
+  safDisplay.textContent = '';
+  secDisplay.textContent = '';
+  duaDisplay.textContent = '';
+
+  // Reset the cursor style
+  map.getCanvas().style.cursor = '';
+});
+
 
 //zoom to feature -- just the same as above, but with flyto
 map.on("click", (event) => {

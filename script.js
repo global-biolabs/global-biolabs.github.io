@@ -527,7 +527,7 @@ document.getElementById("global").addEventListener("click", () => {
   // Fly to a random location
   map.flyTo({
     center: [-37, 38],
-    zoom: 1-5,
+    zoom: 1.5,
     bearing: 0,
     pitch: 0
   });

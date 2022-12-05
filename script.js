@@ -352,7 +352,9 @@ map.on("click", (event) => {
     "Research focus (human, animal, both)",
     "Status",
     "Additional Notes",
-    "Website"
+    "Website",
+    "Latitude",
+    "Longitude"
   ];
   //I'm going to keep track of what is displayed so we don't do it twice, because at the end of the above I'm going to iterate alphabetically, just as an example.
   let displayed = ["Name"];

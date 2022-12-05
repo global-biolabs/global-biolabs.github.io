@@ -368,7 +368,7 @@ map.on("click", (event) => {
       var showProp = true;
       if (displayed.indexOf(key) > -1) showProp = false;
       console.log(key, showProp);
-      if (val.trim() == "") showProp = false;
+      //if (val.trim() == "") showProp = false;
       if (val == "None") showProp = false; //just an example
 
       if (showProp) {

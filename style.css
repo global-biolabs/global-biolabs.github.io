@@ -277,6 +277,7 @@ p2 {
   color: #fcfcfc;
   text-decoration: none;
 }
+
 /* Tooltip container */
 .tooltip {
   position: fixed;
@@ -309,7 +310,6 @@ p2 {
 }
 
 */
-
 .logos {
   position: absolute;
   opacity: 50%;
@@ -325,3 +325,11 @@ p2 {
   width: 28px;
   transition: all 0.3s ease !important;
 }
+/*
+.boxed {
+  border: 1px solid black !important;
+  padding: 2px 0px 2px 15px;
+  margin-top: 2px;
+  margin-bottom: 2px;
+}
+*/

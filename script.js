@@ -4,8 +4,8 @@ mapboxgl.accessToken =
 var map = new mapboxgl.Map({
   container: "map",
   style: "mapbox://styles/erikrenglish/cl668zz3c000315o1lth77x14",
-  center: [-37,38],
-  zoom: 1.5
+  center: [0, 20],
+  zoom: 2
 });
 
 // Add zoom and rotation controls to the map.
@@ -24,17 +24,11 @@ map.on(
   (initLayers = () => {
     map.addSource("Biolabs-dark", {
       type: "vector",
-      // Use any Mapbox-hosted tileset using its tileset id.
-      // Learn more about where to find a tileset id:
-      // https://docs.mapbox.com/help/glossary/tileset-id/
       url: "mapbox://styles/erikrenglish/cl95l6eko000m14o6aruk84v3"
     });
 
     map.addSource("Biolabs-light", {
       type: "vector",
-      // Use any Mapbox-hosted tileset using its tileset id.
-      // Learn more about where to find a tileset id:
-      // https://docs.mapbox.com/help/glossary/tileset-id/
       url: "mapbox://styles/erikrenglish/cl89x76g3000d15s3o58l90j2"
     });
 
@@ -152,6 +146,23 @@ map.on(
       "source-layer": "Stability"
     });
 
+    //BIORISK GEOJSON
+
+    map.addLayer({
+      id: "Biorisk",
+      type: "fill",
+      source: "Biorisk",
+      layout: {
+        // Make the layer visible by default.
+        visibility: "none"
+      },
+      paint: {
+        "fill-color": "#f84444",
+        "fill-opacity": 0.5
+      },
+      "source-layer": "Biorisk"
+    });
+
     //BIOSAFETY GEOJSON
 
     map.addLayer({
@@ -248,84 +259,92 @@ map.on("mouseenter", ["bsl4", "bsl3plus", "absl4", "rbsl4"], (event) => {
 
 //SCORECARDS
 //popup on hover
-const govDisplay = document.getElementById('gov');
-const staDisplay = document.getElementById('sta');
-const safDisplay = document.getElementById('saf');
-const secDisplay = document.getElementById('sec');
-const duaDisplay = document.getElementById('dua');
+const govDisplay = document.getElementById("gov");
+const staDisplay = document.getElementById("sta");
+const riskDisplay = document.getElementById("risk");
+const safDisplay = document.getElementById("saf");
+const secDisplay = document.getElementById("sec");
+const duaDisplay = document.getElementById("dua");
 
-
-let CountryID = null; 
+let CountryID = null;
 
 map.on(
-  "mousemove", ["Governance", "Stability","Biosafety","Biosecurity","DualUse"],  (event) => {
+  "mousemove",
+  ["Governance", "Stability", "Biorisk", "Biosafety", "Biosecurity", "DualUse"],
+  (event) => {
     //change mouse pointer
     map.getCanvas().style.cursor = "pointer";
-    
-    // Set constants equal to the current feature's governance score
-    
+
+    // Set constants equal to the current feature's score
+
     const govScore = event.features[0].properties.Governance;
     const staScore = event.features[0].properties.Stability;
+    const riskScore = event.features[0].properties.Biorisk;
     const safScore = event.features[0].properties.Biosafety;
     const secScore = event.features[0].properties.Biosecurity;
     const duaScore = event.features[0].properties.DualUse;
 
     // Check whether features exist
-  
+
     if (event.features.length === 0) return;
-    
+
     // Display the governance in the sidebar
-   govDisplay.textContent = govScore;
-   staDisplay.textContent = staScore;
-   safDisplay.textContent = safScore;
-   secDisplay.textContent = secScore;
-   duaDisplay.textContent = duaScore;
+    govDisplay.textContent = govScore;
+    staDisplay.textContent = staScore;
+    riskDisplay.textContent = riskScore;
+    safDisplay.textContent = safScore;
+    secDisplay.textContent = secScore;
+    duaDisplay.textContent = duaScore;
 
-
- if (CountryID) {
-    map.removeFeatureState({
-      id: CountryID
-    });
-  }
-
-  CountryID = event.features[0].Country;
-
-  // When the mouse moves over the earthquakes-viz layer, update the
-  // feature state for the feature under the mouse
-  map.setFeatureState(
-    {
-      id: CountryID
-    },
-    {
-      hover: true
+    if (CountryID) {
+      map.removeFeatureState({
+        id: CountryID
+      });
     }
-  );
-});
 
-map.on('mouseleave', ['Governance','Stability','Biosafety','Biosecurity','DualUse'], () => {
-  if (CountryID) {
+    CountryID = event.features[0].Country;
+
+    // When the mouse moves over the earthquakes-viz layer, update the
+    // feature state for the feature under the mouse
     map.setFeatureState(
       {
         id: CountryID
       },
       {
-        hover: false
+        hover: true
       }
     );
   }
+);
 
- CountryID = null;
-  // Remove the information from the previously hovered feature from the sidebar
-  govDisplay.textContent = '';
-  staDisplay.textContent = '';
-  safDisplay.textContent = '';
-  secDisplay.textContent = '';
-  duaDisplay.textContent = '';
+map.on(
+  "mouseleave",
+  ["Governance", "Stability", "Biorisk", "Biosafety", "Biosecurity", "DualUse"],
+  () => {
+    if (CountryID) {
+      map.setFeatureState(
+        {
+          id: CountryID
+        },
+        {
+          hover: false
+        }
+      );
+    }
 
-  // Reset the cursor style
-  map.getCanvas().style.cursor = '';
-});
+    CountryID = null;
+    // Remove the information from the previously hovered feature from the sidebar
+    govDisplay.textContent = "";
+    staDisplay.textContent = "";
+    riskDisplay.textContent = "";
+    safDisplay.textContent = "";
+    secDisplay.textContent = "";
+    duaDisplay.textContent = "";
 
+    // Reset the cursor style
+    map.getCanvas().style.cursor = "";
+  }
+);
 
 //zoom to feature -- just the same as above, but with flyto
 map.on("click", (event) => {
@@ -368,7 +387,7 @@ map.on("click", (event) => {
       var showProp = true;
       if (displayed.indexOf(key) > -1) showProp = false;
       console.log(key, showProp);
-      //if (val.trim() == "") showProp = false;
+      //     if (val.trim() == "") showProp = false;
       if (val == "None") showProp = false; //just an example
 
       if (showProp) {
@@ -498,6 +517,14 @@ function updateScorecard() {
     map.setLayoutProperty("Stability", "visibility", "none");
   }
 
+  //Biorisk
+
+  if (document.getElementById("Biorisk").checked) {
+    map.setLayoutProperty("Biorisk", "visibility", "visible");
+  } else {
+    map.setLayoutProperty("Biorisk", "visibility", "none");
+  }
+
   //Biosafety
 
   if (document.getElementById("Biosafety").checked) {
@@ -528,8 +555,8 @@ function updateScorecard() {
 document.getElementById("global").addEventListener("click", () => {
   // Fly to a random location
   map.flyTo({
-    center: [-37, 38],
-    zoom: 1.5,
+    center: [0, 20],
+    zoom: 2,
     bearing: 0,
     pitch: 0
   });

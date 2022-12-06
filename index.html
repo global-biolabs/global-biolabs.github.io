@@ -1,14 +1,6 @@
 <!DOCTYPE html>
 <html lang="en" >
 <head>
-  <meta charset="UTF-8">
-  <title>Global Biolabs</title>
-  <link rel="stylesheet" href="./style.css">
-
-</head>
-<body>
-<!-- partial:index.partial.html -->
-<head>
   <meta charset='utf-8' />
   <title>Global Bio Labs</title>
   <meta name='viewport' content='width=device-width, initial-scale=1' />
@@ -78,23 +70,27 @@
             <label for="rbsl4">Arthropod Biosafety Level 4</label>
           </div>
 
-     <h3>Scorecard <div style="display:inline-block;" class="tooltip">
+          <h3>Scorecards<div style="display:inline-block;" class="tooltip">
               <p><a href="https://www.globalbiolabs.org" target="_blank">&#9432</a>
               <div class="tooltiptext">
               </div>
           </h3>
-     
+
           <div class="block">
             <div id="scorecard">
-              <input id="Biosafety" type="radio" name="stoggle" value="Biosafety" onchange="updateScorecard()" />
-              <label for="Biosafety">Biosafety <b id="saf"></b></label>
+              <input id="Biorisk" type="radio" name="stoggle" value="Biorisk" onchange="updateScorecard()" />
+              <label for="Biorisk">Biorisk Management <b id="risk"></b></label>
               <br>
-              <input id="Biosecurity" type="radio" name="stoggle" value="Biosecurity" onchange="updateScorecard()" />
-              <label for="Biosecurity">Biosecurity <b id="sec"></b></label>
-              <br>
-              <input id="DualUse" type="radio" name="stoggle" value="DualUse" onchange="updateScorecard()" />
-              <label for="DualUse">Dual Use <b id="dua"></b></label>
-              <br>
+              <div class="boxed"><input id="Biosafety" type="radio" name="stoggle" value="Biosafety" onchange="updateScorecard()" />
+                <label for="Biosafety">Biosafety <b id="saf"></b></label>
+                <br>
+                <input id="Biosecurity" type="radio" name="stoggle" value="Biosecurity" onchange="updateScorecard()" />
+                <label for="Biosecurity">Biosecurity <b id="sec"></b></label>
+                <br>
+                <input id="DualUse" type="radio" name="stoggle" value="DualUse" onchange="updateScorecard()" />
+                <label for="DualUse">Dual Use <b id="dua"></b></label>
+                <br>
+              </div>
               <input id="Governance" type="radio" name="stoggle" value="Governance" onchange="updateScorecard()" />
               <label for="Governance">Governance <b id="gov"></b></label>
               <br>
@@ -135,37 +131,49 @@
             <button onclick="myFunction()" class="dropbtn">Zoom to a specific country</button>
             <div id="myDropdown" class="dropdown-content">
 
+              <a href="#" flyto="-35,-64,3.5">Argentina</a>
               <a href="#" flyto="-25, 133,3">Australia</a>
+              <a href="#" flyto="48,13.5,6">Austria</a>
               <a href="#" flyto="53, 27,5">Belarus</a>
+              <a href="#" flyto="50.7,4.67,6">Belgium</a>
               <a href="#" flyto="-11.25,-51.5,3.5">Brazil</a>
               <a href="#" flyto="56.13,-106.35,3">Canada</a>
               <a href="#" flyto="35.86166, 104.195397,4">China</a>
               <a href="#" flyto="7.75,-5.35,6">Côte d'Ivoire</a>
               <a href="#" flyto="50, 14,7">Czech Republic</a>
+              <a href="#" flyto="55.8,11,6">Denmark</a>
               <a href="#" flyto="48, 2,5">France</a>
-              <a href="#" flyto=".4, 9.5,6">Gabon</a>
+              <a href="#" flyto="-0.7, 11.5,6">Gabon</a>
               <a href="#" flyto="51, 10.5,5">Germany</a>
               <a href="#" flyto="47,19,6.5">Hungary</a>
               <a href="#" flyto="20.5,79,4">India</a>
               <a href="#" flyto="41.8,12.5,5">Italy</a>
               <a href="#" flyto="36.2,138.25,4">Japan</a>
               <a href="#" flyto="48,67,4">Kazakhstan</a>
+              <a href="#" flyto="17.5,103,5">Laos</a>
+              <a href="#" flyto="52.35,5.34,6">The Netherlands</a>
+              <a href="#" flyto="-42,173,5">New Zealand</a>
               <a href="#" flyto="12.87,121.77,5.5">The Philippines</a>
+              <a href="#" flyto="52.25,19.4,5">Poland</a>
+              <a href="#" flyto="45.8,25.75,5.5">Romania</a>
               <a href="#" flyto="35.9,127.7,6">Republic of Korea</a>
               <a href="#" flyto="61.5,105,3">Russian Federation</a>
               <a href="#" flyto="23.9,45,5">Saudi Arabia</a>
               <a href="#" flyto="1.35,103.8,10">Singapore</a>
+              <a href="#" flyto="46,15,6.5">Slovenia</a>
               <a href="#" flyto="-30.56,22.9,5">South Africa</a>
               <a href="#" flyto="40.46,-3.75,5.5">Spain</a>
               <a href="#" flyto="62,18.8,4">Sweden</a>
               <a href="#" flyto="46.8,8.2,7">Switzerland</a>
               <a href="#" flyto="23.6978,120.96,8">Taiwan</a>
+              <a href="#" flyto="14,101,5">Thailand</a>
+              <a href="#" flyto="39.35,37,5">Türkiye</a>
               <a href="#" flyto="55.38,-3.4,5">United Kingdom</a>
               <a href="#" flyto="37.1,-95.7,4">United States</a>
             </div>
           </div>
           <div><br>
-            <p2>Version 2022.1</p2>
+            <p2>v22.1</p2>
           </div>
         </div>
       </div>

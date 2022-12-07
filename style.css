@@ -217,7 +217,7 @@ p2 {
 
 /* sidebar */
 #sidebar {
-  right: 3em;
+  right: 3em !important;
   top: 0.6em;
   padding: 1em;
   width: 15vw;
@@ -325,11 +325,10 @@ p2 {
   width: 28px;
   transition: all 0.3s ease !important;
 }
-/*
+
 .boxed {
-  border: 1px solid black !important;
+  border: 1px;
   padding: 2px 0px 2px 15px;
-  margin-top: 2px;
+  margin-top: ;
   margin-bottom: 2px;
 }
-*/

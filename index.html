@@ -79,7 +79,7 @@
           </div>
 
           <h3>Scorecards<div style="display:inline-block;" class="tooltip">
-              <p><a href="https://www.globalbiolabs.org" target="_blank">&#9432</a>
+              <p><a href="https://www.globalbiolabs.org/methodology" target="_blank">&#9432</a>
               <div class="tooltiptext">
               </div>
           </h3>
@@ -99,12 +99,14 @@
                 <label for="DualUse">Dual Use <b id="dua"></b></label>
                 <br>
               </div>
-              <input id="Governance" type="radio" name="stoggle" value="Governance" onchange="updateScorecard()" />
-              <label for="Governance">Governance <b id="gov"></b></label>
+              National Context
               <br>
-              <input id="Stability" type="radio" name="stoggle" value="Stability" onchange="updateScorecard()" />
-              <label for="Stability">Stability <b id="sta"></b></label>
-              <br>
+              <div class="boxed"><input id="Governance" type="radio" name="stoggle" value="Governance" onchange="updateScorecard()" />
+                <label for="Governance">Governance <b id="gov"></b></label>
+                <br>
+                <input id="Stability" type="radio" name="stoggle" value="Stability" onchange="updateScorecard()" />
+                <label for="Stability">Stability <b id="sta"></b></label>
+              </div>
               <input id="none" type="radio" name="stoggle" value="none" onchange="updateScorecard()" checked />
               <label for="none">None</label>
             </div>

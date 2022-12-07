@@ -372,6 +372,10 @@ map.on("click", (event) => {
     "Status",
     "Additional Notes",
     "Website",
+    "Link to Publications",
+    "Diagnostics",
+    "Patient",
+    "Research",
     "Latitude",
     "Longitude"
   ];
@@ -398,6 +402,12 @@ map.on("click", (event) => {
           case "Website":
             prop +=
               "<span class='prop_key'>Website:</span> <span class='prop_val'><a href=\"" +
+              val +
+              '" target="_blank">link</a></span>';
+            break;
+          case "Link to Publications":
+            prop +=
+              "<span class='prop_key'>Link to Publications:</span> <span class='prop_val'><a href=\"" +
               val +
               '" target="_blank">link</a></span>';
             break;

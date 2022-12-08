@@ -565,8 +565,8 @@ function updateScorecard() {
 document.getElementById("global").addEventListener("click", () => {
   // Fly to a random location
   map.flyTo({
-    center: [0, 20],
-    zoom: 2,
+    center: [0, 0],
+    zoom: 1.5,
     bearing: 0,
     pitch: 0
   });

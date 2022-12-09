@@ -357,13 +357,13 @@ map.on("click", (event) => {
   const feature = features[0];
   map.flyTo({
     center: feature.geometry.coordinates,
-    zoom: 12.5, //could change this to whatever looks best
+    zoom: 12.5, //could change to closer but rounded GPS makes it inaccurate past this point
     pitch: 0,
     bearing: 0
   });
 
   $("#site_name").text(feature.properties.Name);
-  //this is just a subset of properties -- you'll have to figure out which you want to display. You could iterate over all of the properties using Object.keys(feature.properties) but it would be in alphabetical order which might not be what you want in terms of display.
+  //this is just a subset of priority properties 
   let property_list = [
     "Address",
     "Country",
@@ -379,7 +379,7 @@ map.on("click", (event) => {
     "Latitude",
     "Longitude"
   ];
-  //I'm going to keep track of what is displayed so we don't do it twice, because at the end of the above I'm going to iterate alphabetically, just as an example.
+  //Keep track of what's displayed
   let displayed = ["Name"];
   $("#properties").html(""); //clear any existing
   for (let i in property_list) {
@@ -395,9 +395,9 @@ map.on("click", (event) => {
       if (val == "None") showProp = false; //just an example
 
       if (showProp) {
-        //building these up as strings is a little crude, but easy
+        //building these up as strings 
         var prop = "<div class='property'>";
-        //just showing how one could adapt for specific situations
+        //could adapt for specific situations
         switch (key) {
           case "Website":
             prop +=
@@ -425,13 +425,13 @@ map.on("click", (event) => {
       }
     }
   }
-  //now just show everything else -- again, this will be kind of a mess unless you create a master property list with the order you want it in
+  //now just show everything else
   for (let i in Object.keys(feature.properties)) {
     var key = Object.keys(feature.properties)[i];
     var showProp = true;
     if (displayed.indexOf(key) > -1) showProp = false;
     //disabled -- if (feature.properties[key].trim() == "") showProp = false;
-    if (feature.properties[key] == "None") showProp = false; //just an example
+    if (feature.properties[key] == "None") showProp = false; 
 
     if (showProp) {
       var prop = "<div class='property'>";
@@ -447,7 +447,7 @@ map.on("click", (event) => {
 
   console.log(feature.properties);
   $("#sidebar").css("display", "block");
-  //this will never turn off as it is written, but you could decide to make it hide if you clicked away from it, or add a close button or whatever.
+  //this will never turn off as it is written
 });
 
 // add dropdown menu
@@ -575,8 +575,8 @@ document.getElementById("global").addEventListener("click", () => {
 //fly to selected country
 //easier to manage the click stuff in JQuery
 $(".dropdown-content a").on("click", function () {
-  //I would do it this way -- set a flyto attribute in the <a> element for each place that is of the format lat,lon,zoom.
-  //then we just grab the attribute, split() it into parts, and pass it to map.flyTo();
+  //set a flyto attribute in the <a> element for each place that is of the format lat,lon,zoom.
+  //then grab the attribute, split() it into parts, and pass it to map.flyTo();
   if ($(this).attr("flyto")) {
     var flyto = $(this).attr("flyto").split(",");
     map.flyTo({

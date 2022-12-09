@@ -4,7 +4,7 @@ mapboxgl.accessToken =
 var map = new mapboxgl.Map({
   container: "map",
   style: "mapbox://styles/erikrenglish/cl668zz3c000315o1lth77x14",
-  center: [0, 0],
+  center: [-40,33.5],
   zoom: 1.5
 });
 
@@ -565,7 +565,7 @@ function updateScorecard() {
 document.getElementById("global").addEventListener("click", () => {
   // Fly to a random location
   map.flyTo({
-    center: [0, 0],
+    center: [-40,33.5],
     zoom: 1.5,
     bearing: 0,
     pitch: 0

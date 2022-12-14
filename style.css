@@ -53,9 +53,9 @@ p2 {
   display: block;
 }
 #controller {
-  padding: 16px;
-  top: 24px;
-  left: 24px;
+   left: 1em !important;
+  top: 0.6em;
+  padding: 1em;
 }
 .button {
   margin: 0 8px 0 8px;

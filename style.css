@@ -224,6 +224,11 @@ p2 {
   display: none;
   max-height: 75vh;
 }
+@media only screen and (max-width: 800px) {
+  #sidebar {
+    width: 40%;
+  }
+}
 
 #sidebar .prop_key {
   font-weight: bold;

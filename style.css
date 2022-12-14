@@ -311,7 +311,7 @@ p2 {
 
 */
 .logos {
-  position: absolute;
+  position: fixed;
   opacity: 50%;
   right: 10px;
   bottom: 30px;
